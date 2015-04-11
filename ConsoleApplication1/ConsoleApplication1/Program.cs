@@ -10,7 +10,13 @@ namespace ConsoleApplication1
 {
     class Program
     {
-        static void Main(string[] args)
+        static int square(int a)
+        {
+            return a * a;
+
+        }
+
+        private static void Main(string[] args)
         {
             //Array
             //int[] studentList;
@@ -55,18 +61,86 @@ namespace ConsoleApplication1
             //}
             //Trace.WriteLine(reverseStr);
 
-            string input = "Hello how Are you";
-            string[] words = input.Split(' ');
+            //string input = "Hello how Are you";
+            //string[] words = input.Split(' ');
+            //string output = "";
+            //for(var i=words.Length - 1; i >= 0 ;i--)
+            //{
+            //    output += words[i];
+            //    if (i != 0)
+            //    {
+            //        output += " ";
+            //    }
+            //}
+            //Trace.WriteLine(output);
+
+            //int t = Convert.ToInt32(Console.ReadLine());
+            //int val1, val2, sum;
+            //for (int i = 0; i < t; i++)
+            //{
+            //    String elements = Console.ReadLine();
+            //    String[] split_elements = elements.Split(' ');
+            //    val1 = Convert.ToInt32(split_elements[0]);
+            //    val2 = Convert.ToInt32(split_elements[1]);
+            //    sum = solveMeSecond(val1, val2);
+            //    Console.WriteLine(sum);
+            //}
+
+            //int start = Convert.ToInt32(Console.ReadLine());
+            //int end = Convert.ToInt32(Console.ReadLine());
+            double start = Convert.ToInt32(Console.ReadLine());
+            double end = Convert.ToInt32(Console.ReadLine());
+            double squareResult;
             string output = "";
-            for(var i=words.Length - 1; i >= 0 ;i--)
+            if (end > 100000)
             {
-                output += words[i];
-                if (i != 0)
+                end = 100000;
+            }
+            if ( (start > 0) && (end > 0) && (start != 0) && (end != 0) )
+            {
+                for (var i = start; i <= end; i++)
                 {
-                    output += " ";
+                    squareResult = i * i;
+                    string sub = Convert.ToString(squareResult);
+                    int strCount = sub.Length;
+                    string firstPart;
+                    string secondPart;
+                    if ((Convert.ToString(squareResult).Length < 2))
+                    {
+                        firstPart = sub.Substring(0, 1);
+                        secondPart = "0";
+                    }
+                    else
+                    {
+                        firstPart = sub.Substring(0, strCount/2);
+                        int subStrLength;
+                        if (strCount%2 == 0)
+                        {
+                            subStrLength = strCount/2;
+                        }
+                        else
+                        {
+                            subStrLength = (strCount/2) + strCount%2;
+
+                        }
+                        secondPart = sub.Substring(strCount/2, subStrLength);
+                    }
+                    int plusResult = Convert.ToInt32(firstPart) + Convert.ToInt32(secondPart);
+                    if (plusResult == i)
+                    {
+                        output += i + " ";
+                    }
+
                 }
             }
-            Trace.WriteLine(output);
+            if (output == "")
+            {
+                Trace.WriteLine("INVALID RANGE");
+            }
+            else
+            {
+                Trace.WriteLine(output);
+            }
         }
     }
 }
